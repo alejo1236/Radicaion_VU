@@ -51,7 +51,7 @@
             <div>
                 <p>Asunto:<span id="Asunto"></span></p>
                 <p>Radicado: [Radicado]</p>
-                <p>Folios:<span id="txtNumFolios"></span></p>
+                <p>Folios:<span id="NumFolios"></span></p>
                 <p>Fecha y hora actual: <span id="fechaHora"></span></p>
             </div>
         <!--</div>-->
@@ -61,6 +61,7 @@
     
     
     <script>
+
         // Obtener la fecha y hora actual
         var fechaHoraActual = new Date();
         var fechaHoraFormato = fechaHoraActual.toLocaleString('es-ES');
@@ -68,8 +69,6 @@
         // Mostrar la fecha y hora actual en el elemento con id="fechaHora"
         document.getElementById("fechaHora").innerText = fechaHoraFormato;
 
-        // Función para descargar el contenido del box como una imagen JPG
-        
         // Función para descargar el contenido del box como una imagen JPG
       function descargarBox() {
         var box = document.getElementById("downloadBox");
@@ -88,12 +87,12 @@
 
         window.onload = function() {
             // Función trae el valor del asunto
-            var txtAsunto = document.getElementById("Asunto").innerText = txtAsunto; // Asigna el valor deseado
+            var Asunto = document.getElementById("Asunto").innerText = Asunto; // Asigna el valor deseado
             
 
             // Función trae el valor de los folios
-            var txtNumFolios = "Número de folios"; // Asigna el valor deseado
-            document.getElementById("txtNumFolios").innerText = txtNumFolios;
+            var NumFolios = "Número de folios"; // Asigna el valor deseado
+            document.getElementById("NumFolios").innerText = NumFolios;
 
             // Llamar a la función de descarga al cargar la página
             descargarBox();
