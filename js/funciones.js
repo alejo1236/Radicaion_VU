@@ -1,39 +1,59 @@
                     
                     
-                    
-                    
-                    
-                    var fechaActual = new Date();
-                    var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                    var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
-                    document.getElementById('fecha').textContent = fechaFormateada;
+                    function redireccionar1(pagina) {
+                        alert("Empezaras un radicado de ENTRADA, pulsa aceptar para continuar");
+                        window.location.href = pagina;
+                    }
+            
+                    function redireccionar2(pagina) {
+                        window.location.href = pagina;
+                        alert("Has seleccionado: SALIDA");
+                    }
+            
+                    function redireccionar3(pagina) {
+                        window.location.href = pagina;
+                        alert("Has seleccionado: INTERNO");
+                    }
+            
+                    function redireccionar4(pagina) {
+                        window.location.href = pagina;
+                        alert("Has seleccionado: CONSULTA");
+                    }
+                   
+                    function asignarfecha(){
+                        var fechaActual = new Date();
+                        var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                        var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
+                        var fechafinal = document.getElementById('fecha').textContent = fechaFormateada;
+                        }
 
-                    var numeroConsecutivo = 1; // Inicializamos el número consecutivo
-                    function guardarRadicado() {
-                    var numeroRadicado = generarNumeroRadicado(numeroConsecutivo);
-                    document.getElementById('radicado').textContent = numeroRadicado;
-                    numeroConsecutivo++; // Incrementamos el número consecutivo
-                    }
-                    //FUNCION PARA GENERAR EL NUMERO DE RADICADO
-                    // Generar el número de radicado
-                    var numeroRadicado = generarNumeroRadicado();
-                    document.getElementById('radicado').textContent = numeroRadicado;
-    
-                    function generarNumeroRadicado(numeroConsecutivo) {
-                    // Obtener la fecha actual
-                    var fecha = new Date();
-                    // Formatear la fecha como ddmmaaaa
-                    var dia = agregarCeros(fecha.getDate());
-                    var mes = agregarCeros(fecha.getMonth() + 1);
-                    var año = fecha.getFullYear().toString().slice(-2);
-                    // Construir el número de radicado con el formato Eddmmaaaa-xxxx
-                    var numeroRadicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
-                    return numeroRadicado;
-                    }
-    
-                    function agregarCeros(numero) {
-                        return numero < 10 ? '0' + numero : numero;
-                    }
+                        var numeroConsecutivo = 1; // Inicializamos el número consecutivo
+                        function guardarRadicado() {
+                        var numeroRadicado = generarNumeroRadicado(numeroConsecutivo);
+                        document.getElementById('radicado').textContent = numeroRadicado;
+                        numeroConsecutivo++; // Incrementamos el número consecutivo
+                        }
+                        //FUNCION PARA GENERAR EL NUMERO DE RADICADO
+                        // Generar el número de radicado
+                        var numeroRadicado = generarNumeroRadicado();
+                        document.getElementById('radicado').textContent = numeroRadicado;
+        
+                        function generarNumeroRadicado(numeroConsecutivo) {
+                        // Obtener la fecha actual
+                        var fecha = new Date();
+                        // Formatear la fecha como ddmmaaaa
+                        var dia = agregarCeros(fecha.getDate());
+                        var mes = agregarCeros(fecha.getMonth() + 1);
+                        var año = fecha.getFullYear().toString().slice(-2);
+                        // Construir el número de radicado con el formato Eddmmaaaa-xxxx
+                        var numeroRadicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
+                        return numeroRadicado;
+                        }
+        
+                        function agregarCeros(numero) {
+                            return numero < 10 ? '0' + numero : numero;
+                        }
+                    
 
                     //FUNCION PARA VALIDAR LOS CAMPOS DEL FORMULARIO 
                     function validarCampos() {

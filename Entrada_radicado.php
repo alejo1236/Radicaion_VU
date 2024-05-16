@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>RADICADO</title>
     <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="js\funciones.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styleEntrada.css">
     <script src="js/bootstrap.js"></script>
@@ -21,54 +22,50 @@
             </div>
             <div class="col-sm-3">
                 <h5>Fecha de radicacion</h5>
-                <p id="fecha"></p>
                 
-                <script>// JS PARA TRAER LA FECHA ACTUAL D
-                    
-                    var fechaActual = new Date();
-                    var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                    var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
-                    document.getElementById('fecha').textContent = fechaFormateada;
-                </script>
+                <p id="fecha"   ></p>
+                <script>asignarfecha()</script>
 
             </div>
             <div class="col-sm-3" , >
                 <h5>Número de radicado</h5>
                 <p id="radicado"></p>
-                <script>
-                    
-                    var numeroConsecutivo = 1; // Inicializamos el número consecutivo
-                    function guardarRadicado() {
-                    var numeroRadicado = generarNumeroRadicado(numeroConsecutivo);
-                    document.getElementById('radicado').textContent = numeroRadicado;
-                    numeroConsecutivo++; // Incrementamos el número consecutivo
-                    }
-                    //FUNCION PARA GENERAR EL NUMERO DE RADICADO
-                    // Generar el número de radicado
-                    var numeroRadicado = generarNumeroRadicado();
-                    document.getElementById('radicado').textContent = numeroRadicado;
-    
-                    function generarNumeroRadicado(numeroConsecutivo) {
-                    // Obtener la fecha actual
-                    var fecha = new Date();
-                    // Formatear la fecha como ddmmaaaa
-                    var dia = agregarCeros(fecha.getDate());
-                    var mes = agregarCeros(fecha.getMonth() + 1);
-                    var año = fecha.getFullYear().toString().slice(-2);
-                    // Construir el número de radicado con el formato Eddmmaaaa-xxxx
-                    var numeroRadicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
-                    return numeroRadicado;
-                    }
-    
-                    function agregarCeros(numero) {
-                        return numero < 10 ? '0' + numero : numero;
-                    }
+                    <script>
+                        
+                        
+                        //FUNCION PARA GENERAR EL NUMERO DE RADICADO
+                        // Generar el número de radicado
+                        var numeroRadicado = generarNumeroRadicado();
+                        document.getElementById('radicado').textContent = numeroRadicado;
+        
+                        function generarNumeroRadicado(numeroConsecutivo) {
+                        
+                        var numeroConsecutivo = 1; // Inicializamos el número consecutivo
+                        function guardarRadicado() {
+                        var numeroRadicado = generarNumeroRadicado(numeroConsecutivo);
+                        document.getElementById('radicado').textContent = numeroRadicado;
+                        numeroConsecutivo++; // Incrementamos el número consecutivo
+                        }
+                        // Obtener la fecha actual
+                        var fecha = new Date();
+                        // Formatear la fecha como ddmmaaaa
+                        var dia = agregarCeros(fecha.getDate());
+                        var mes = agregarCeros(fecha.getMonth() + 1);
+                        var año = fecha.getFullYear().toString().slice(-2);
+                        // Construir el número de radicado con el formato Eddmmaaaa-xxxx
+                        var numeroRadicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
+                        return numeroRadicado;
+                        }
+        
+                        function agregarCeros(numero) {
+                            return numero < 10 ? '0' + numero : numero;
+                        }
 
-                    function ImprimirSello(numeroRadicado,numeroConsecutivo){
-                    alert('SU NUMERO DE RADICADO ES ' + numeroRadicado + numeroConsecutivo + ' REVISE QUE SE ENCUENTRE BIEN DILIGENCIADO EL RADICADO Y ACEPTE PARA CONTINUAR CON LA IMPRESION DEL SELLO')
-                    }
-                    
-                </script>
+                        function ImprimirSello(numeroRadicado,numeroConsecutivo){
+                        alert('SU NUMERO DE RADICADO ES ' + numeroRadicado + ' REVISE QUE SE ENCUENTRE BIEN DILIGENCIADO EL RADICADO Y ACEPTE PARA CONTINUAR CON LA IMPRESION DEL SELLO')
+                        }
+                        
+                    </script>
 
             </div>
             <div class="col-sm-3">
