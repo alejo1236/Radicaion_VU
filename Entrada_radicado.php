@@ -13,7 +13,7 @@
 
     <!-- EN ESTE DIV SE ENCUENTRA EL ENCABEZADO DE RADICACION -->
     <div class="container text-center mt-5">
-        <h2>Datos de Radicacion</h2>
+        <h2>Datos de Radicacion de entrada</h2>
         <hr>
         <div class="row">
             <div class="col-sm-3">
@@ -75,7 +75,7 @@
         </div>
         <hr>  
     </div>
-<form method="POST" action="imagensello.php"> 
+<form method="POST" action="imagenselloentrada.php"> 
         <div class="container text-center mt-5">
             <h2>Datos del Remitente</h2>
             <hr>
@@ -135,8 +135,8 @@
             <input type="number" id="numfolios" name="numfolios" class="form-control" placeholder="Numero de folios" required><br>
             <input type="number" id="serie"  name="serie" class="form-control" placeholder="Numero de serie" required><br>
             <input type="number" id="subserie" name="subserie" class="form-control" placeholder="Numero de subserie" required><br>
-            <textarea id="asunto" rows="4" class="form-control" name="asunto" placeholder="Asunto del radicado" required></textarea><br>
-            <textarea id="comentarios" rows="4" class="form-control" name="comentarios" placeholder="Comentarios o Anexos (CDs, USB)"></textarea>
+            <textarea id="asunto" rows="2" class="form-control" name="asunto" placeholder="Asunto del radicado" required></textarea><br>
+            <textarea id="comentarios" rows="2" class="form-control" name="comentarios" placeholder="Comentarios o Anexos (CDs, USB)"></textarea>
             
         </div>
     </div>

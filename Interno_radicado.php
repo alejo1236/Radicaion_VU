@@ -13,7 +13,7 @@
 
     <!-- EN ESTE DIV SE ENCUENTRA EL ENCABEZADO DE RADICACION -->
     <div class="container text-center mt-5">
-        <h2>Datos de Radicacion de salida</h2>
+        <h2>Datos de Radicacion interno</h2>
         <hr>
         <div class="row">
             <div class="col-sm-3">
@@ -53,7 +53,7 @@
                         var mes = agregarCeros(fecha.getMonth() + 1);
                         var año = fecha.getFullYear().toString().slice(-2);
                         // Construir el número de radicado con el formato Eddmmaaaa-xxxx
-                        var numeroRadicado = 'S' + dia + mes + año + '-' + numeroConsecutivo;
+                        var numeroRadicado = 'IN' + dia + mes + año + '-' + numeroConsecutivo;
                         return numeroRadicado;
                         }
         
@@ -75,7 +75,7 @@
         </div>
         <hr>  
     </div>
-<form method="POST" action="imagensellosalida.php"> 
+<form method="POST" action="imagensellointerno.php"> 
         
 <div class="container text-center mt-5">
         <h2>Datos del remitente</h2>
@@ -94,8 +94,6 @@
                 <option value="TALENTO HUMANO">TALENTO HUMANO</option>
                 <option value="GESTION DOCUMENTAL">GESTION DOCUMENTAL</option>
             </select> </h5>
-            <h5>Direccion de respuesta</h5>
-                <p> Correo: ventanilla@infitulua.gov.co  -  Direccion: Cra 26 #24-2, Tuluá primer piso, Valle del Cauca </p> 
         </div>
     </div>
 
@@ -103,10 +101,19 @@
             <h2>Datos del Destinatario</h2>
             <hr>
             <div class="form-group">
-                <input type="text-center" id="nombredestinatario" name="nombredestinatario" class="form-control" placeholder="Nombre del destinatario" required><br>
-                <input type="text" id="empresadestinatario" name="empresadestinatario" class="form-control" placeholder="Empresa del destinatario" required><br>
-                <input type="text" id="cargodestinatario" name="cargodestinatario" class="form-control" placeholder="Cargo del destinatario" required><br>
-                <input type="number" id="documentodestinatario" name="documentodestinatario" class="form-control" placeholder="Documento NIT/CC/CE/Pasaporte/ del destinatario" required>
+            <input type="text" id="nombrefuncionario" name="nombrefuncionario" class="form-control" placeholder="Nombre del funcionario destinatario" required><br>
+                
+                <h5>  Area del funcionario: 
+                <select class="form-control"  name="areafuncionario"  placeholder=" Area a la que se adjudica " required>
+                    <option value="GERENCIA">GERENCIA</option>
+                    <option value="AREA FINANCIERA">AREA FINANCIERA</option>
+                    <option value="COMERCIAL">COMERCIAL</option>
+                    <option value="JURIDICA">JURIDICA</option>
+                    <option value="CONTROL">CONTROL</option>
+                    <option value="TECNICA">TECNICA</option>
+                    <option value="TALENTO HUMANO">TALENTO HUMANO</option>
+                    <option value="GESTION DOCUMENTAL">GESTION DOCUMENTAL</option>
+                </select> </h5>
             </div>
         </div>
     
@@ -121,7 +128,7 @@
                 <option value="Electronico">Electronico</option>
                 <option value="Mensajeria">Mensajeria</option>    
             </select></h5>
-            <h5>  Seleccione el tipo documental de la salida: 
+            <h5>  Seleccione el tipo documental: 
             <select class="form-control" name="tipodocumental" required>
                 <option value="Respuesta">Respuesta</option>
                 <option value="Correspondencia">Correspondencia</option>

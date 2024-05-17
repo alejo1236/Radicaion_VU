@@ -158,9 +158,6 @@ if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/p
     ';
 }
 
-
-echo $_REQUEST[radicado];
-
 $host = 'localhost';
 $bd = 'radicados';
 $user = 'postgres';

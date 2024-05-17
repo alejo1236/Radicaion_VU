@@ -17,8 +17,8 @@
     <div class="container">
         <h1>Seleccione el tipo de radicacion que desea comenzar</h1>
         <button class="btn btn-success" onclick="redireccionar1('Entrada_radicado.php')">ENTRADA</button>
-        <button class="btn btn-warning" onclick="redireccionar2('SALIDA ')">SALIDA</button> <!--COLOCAR EL HTML DE SALIDA_RADICADO.HTML-->
-        <button class="btn btn-info" onclick="redireccionar3('INTERNO')">INTERNO</button><!--COLOCAR EL HTML DE INTERNO_RADICADO.HTML-->
+        <button class="btn btn-warning" onclick="redireccionar2('Salida_radicado.php')">SALIDA</button> <!--COLOCAR EL HTML DE SALIDA_RADICADO.HTML-->
+        <button class="btn btn-info" onclick="redireccionar3('Interno_radicado.php')">INTERNO</button><!--COLOCAR EL HTML DE INTERNO_RADICADO.HTML-->
         <button class="btn btn-secondary" onclick="redireccionar4('CONSULTA')">CONSULTA </button><!--COLOCAR EL HTML DE CONSULTA_RADICADO.HTML-->
     </div>
 
