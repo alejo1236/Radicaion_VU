@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                                                                                       <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 
     <!-- EN ESTE DIV SE ENCUENTRA EL ENCABEZADO DE RADICACION -->
     <div class="container text-center mt-5">
-        <h2>Datos de Radicacion de entrada</h2>
+        <h2>Datos de Radicacion de salida</h2>
         <hr>
         <div class="row">
             <div class="col-sm-3">
@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-3" , >
                 <h5>Número de radicado</h5>
-                <p id="radicado" name="radicado"></p>
+                <p id="radicado"></p>
                     <script>
                         
                         
@@ -53,7 +53,7 @@
                         var mes = agregarCeros(fecha.getMonth() + 1);
                         var año = fecha.getFullYear().toString().slice(-2);
                         // Construir el número de radicado con el formato Eddmmaaaa-xxxx
-                        var numeroRadicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
+                        var numeroRadicado = 'S' + dia + mes + año + '-' + numeroConsecutivo;
                         return numeroRadicado;
                         }
         
@@ -75,25 +75,14 @@
         </div>
         <hr>  
     </div>
-<form method="POST" action="imagenselloentrada.php"> 
-        <div class="container text-center mt-5">
-            <h2>Datos del Remitente</h2>
-            <hr>
-            <div class="form-group">
-                <input type="text-center" id="nombreremitente" name="nombreremitente" class="form-control" placeholder="Nombre del remitente" required><br>
-                <input type="text" id="empresaremitente" name="empresaremitente" class="form-control" placeholder="Empresa del remitente" required><br>
-                <input type="text" id="cargoremitente" name="cargoremitente" class="form-control" placeholder="Cargo del remitente" required><br>
-                <input type="text" id="dirrespuesta" name="dirrespuesta" class="form-control" placeholder="Direccion de respuesta" required><br>
-                <input type="number" id="documento" name="documento" class="form-control" placeholder="Documento NIT/CC/CE/Pasaporte del remitente" required><br>
-                <input type="email" id="correo" name="correo" class="form-control" placeholder="correo electronico de respuesta" required><br>
-            </div>
-        </div>
-    
-    <div class="container text-center mt-5">
-        <h2>Datos del Destinatario</h2>
+<form method="POST" action="imagensellosalida.php"> 
+        
+<div class="container text-center mt-5">
+        <h2>Datos del remitente</h2>
         <hr>
         <div class="form-group">
-            <input type="text" id="nombrefuncionario" name="nombrefuncionario" class="form-control" placeholder="Nombre del funcionario" required><br>
+            <input type="text" id="nombrefuncionario" name="nombrefuncionario" class="form-control" placeholder="Nombre del funcionario que remite" required><br>
+                
             <h5>  Area del funcionario: 
             <select class="form-control"  name="areafuncionario"  placeholder=" Area a la que se adjudica " required>
                 <option value="GERENCIA">GERENCIA</option>
@@ -104,22 +93,37 @@
                 <option value="TECNICA">TECNICA</option>
                 <option value="TALENTO HUMANO">TALENTO HUMANO</option>
                 <option value="GESTION DOCUMENTAL">GESTION DOCUMENTAL</option>
-            </select><br> </h5>
+            </select> </h5>
+            <h5>Direccion de respuesta</h5>
+                <p> Correo: ventanilla@infitulua.gov.co  -  Direccion: Cra 26 #24-2, Tuluá primer piso, Valle del Cauca </p> 
         </div>
     </div>
 
+<div class="container text-center mt-5">
+            <h2>Datos del Destinatario</h2>
+            <hr>
+            <div class="form-group">
+                <input type="text-center" id="nombredestinatario" name="nombredestinatario" class="form-control" placeholder="Nombre del destinatario" required><br>
+                <input type="text" id="empresadestinatario" name="empresadestinatario" class="form-control" placeholder="Empresa del destinatario" required><br>
+                <input type="text" id="cargodestinatario" name="cargodestinatario" class="form-control" placeholder="Cargo del destinatario" required><br>
+                <input type="number" id="documentodestinatario" name="documentodestinatario" class="form-control" placeholder="Documento NIT/CC/CE/Pasaporte/ del destinatario" required>
+            </div>
+        </div>
+    
+    
     <div class="container text-center mt-5">
         <h2>Datos del Comunicado</h2>
         <hr>
         <div class="form-group">
-            <h5>  Cual es el canal de recepciòn: 
-            <select class="form-control" name="canalrepcion" required>
+            <h5>  Cual es el canal de Envio: 
+            <select class="form-control" name="canalenvio" required>
                 <option value="Fisico">Fisico</option>
                 <option value="Electronico">Electronico</option>
                 <option value="Mensajeria">Mensajeria</option>    
             </select></h5>
-            <h5>  Seleccione el tipo documental: 
+            <h5>  Seleccione el tipo documental de la salida: 
             <select class="form-control" name="tipodocumental" required>
+                <option value="Respuesta">Respuesta</option>
                 <option value="Correspondencia">Correspondencia</option>
                 <option value="Facturas">Facturas</option>
                 <option value="Contratos y acuerdos">Contratos y acuerdos</option>
@@ -133,8 +137,6 @@
                 <option value="Documentos tecnicos">Documentos tecnicos</option>       
             </select></h5><br>
             <input type="number" id="numfolios" name="numfolios" class="form-control" placeholder="Numero de folios" required><br>
-            <input type="number" id="serie"  name="serie" class="form-control" placeholder="Numero de serie" required><br>
-            <input type="number" id="subserie" name="subserie" class="form-control" placeholder="Numero de subserie" required><br>
             <textarea id="asunto" rows="2" class="form-control" name="asunto" placeholder="Asunto del radicado" required></textarea><br>
             <textarea id="comentarios" rows="2" class="form-control" name="comentarios" placeholder="Comentarios o Anexos (CDs, USB)"></textarea>
             
@@ -145,8 +147,7 @@
         <input type="submit" class="btn btn-success" value="Guardar y continuar el proceso de radicacion" id="btnGuardar" onclick="ImprimirSello(numeroRadicado,numeroConsecutivo)">
         <input type="button" class="btn btn-danger" value="Eliminar" id="btnEliminar">
     </div>            
- 
-</form>
 
+</form>
 </body>
 </html>
