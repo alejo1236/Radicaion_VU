@@ -159,4 +159,28 @@ if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/p
 }
 
 
+echo $_REQUEST[radicado];
+
+$host = 'localhost';
+$bd = 'radicados';
+$user = 'postgres';
+$pass = 'sYSTEM123';
+
+$conexion = pg_connect("host=$host dbname=$bd user=$user password=$pass");
+
+  
+
+  $query = ("INSERT INTO public.entrada(nombreremitente, empresaremitente, cargoremitente, dirrespuesta, documento, correo, nombrefuncionario, areafuncionario, canalrepcion, tipodocumental, numfolios, serie, subserie, asunto, comentarios)
+  
+  VALUES('$_REQUEST[nombreremitente]', '$_REQUEST[empresaremitente]', '$_REQUEST[cargoremitente]', '$_REQUEST[dirrespuesta]', '$_REQUEST[documento]', '$_REQUEST[correo]', '$_REQUEST[nombrefuncionario]', '$_REQUEST[areafuncionario]', '$_REQUEST[canalrepcion]','$_REQUEST[tipodocumental]' , '$_REQUEST[numfolios]', '$_REQUEST[serie]', '$_REQUEST[subserie]', '$_REQUEST[asunto]', '$_REQUEST[comentarios]')");
+
+
+$consulta = pg_query($conexion,$query);
+pg_close();
+echo 'usuario insertado';
+
+
+
+
+
 ?>
