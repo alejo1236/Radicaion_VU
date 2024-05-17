@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-3" , >
                 <h5>Número de radicado</h5>
-                <p id="radicado"></p>
+                <p id="radicado" name="radicado"></p>
                     <script>
                         
                         
@@ -80,12 +80,12 @@
             <h2>Datos del Remitente</h2>
             <hr>
             <div class="form-group">
-                <input type="text-center" id="NombreRemitente" name="NombreRemitente" class="form-control" placeholder="Nombre del remitente" required><br>
-                <input type="text" id="EmpresaRemitente" name="EmpresaRemitente" class="form-control" placeholder="Empresa del remitente" required><br>
-                <input type="text" id="CargoRemitente" name="CargoRemitente" class="form-control" placeholder="Cargo del remitente" required><br>
-                <input type="text" id="DirRespuesta" name="DirRespuesta" class="form-control" placeholder="Direccion de respuesta" required><br>
-                <input type="number" id="Documento" name="Documento" class="form-control" placeholder="Documento NIT/CC/CE/Pasaporte del remitente" required><br>
-                <input type="email" id="Correo" name="Correo" class="form-control" placeholder="Correo electronico de respuesta" required><br>
+                <input type="text-center" id="nombreremitente" name="nombreremitente" class="form-control" placeholder="Nombre del remitente" required><br>
+                <input type="text" id="empresaremitente" name="empresaremitente" class="form-control" placeholder="Empresa del remitente" required><br>
+                <input type="text" id="cargoremitente" name="cargoremitente" class="form-control" placeholder="Cargo del remitente" required><br>
+                <input type="text" id="dirrespuesta" name="dirrespuesta" class="form-control" placeholder="Direccion de respuesta" required><br>
+                <input type="number" id="documento" name="documento" class="form-control" placeholder="Documento NIT/CC/CE/Pasaporte del remitente" required><br>
+                <input type="email" id="correo" name="correo" class="form-control" placeholder="correo electronico de respuesta" required><br>
             </div>
         </div>
     
@@ -93,9 +93,9 @@
         <h2>Datos del Destinatario</h2>
         <hr>
         <div class="form-group">
-            <input type="text" id="NombreFuncionario" name="NombreFuncionario" class="form-control" placeholder="Nombre del funcionario" required><br>
+            <input type="text" id="nombrefuncionario" name="nombrefuncionario" class="form-control" placeholder="Nombre del funcionario" required><br>
             <h5>  Area del funcionario: 
-            <select class="form-control"  name="AreaFuncionario"  placeholder=" Area a la que se adjudica " required>
+            <select class="form-control"  name="areafuncionario"  placeholder=" Area a la que se adjudica " required>
                 <option value="GERENCIA">GERENCIA</option>
                 <option value="AREA FINANCIERA">AREA FINANCIERA</option>
                 <option value="COMERCIAL">COMERCIAL</option>
@@ -113,13 +113,13 @@
         <hr>
         <div class="form-group">
             <h5>  Cual es el canal de recepciòn: 
-            <select class="form-control" name="CanalRepcion" required>
+            <select class="form-control" name="canalrepcion" required>
                 <option value="Fisico">Fisico</option>
                 <option value="Electronico">Electronico</option>
                 <option value="Mensajeria">Mensajeria</option>    
             </select></h5>
             <h5>  Seleccione el tipo documental: 
-            <select class="form-control" name="TipoDocumental" required>
+            <select class="form-control" name="tipodocumental" required>
                 <option value="Correspondencia">Correspondencia</option>
                 <option value="Facturas">Facturas</option>
                 <option value="Contratos y acuerdos">Contratos y acuerdos</option>
@@ -132,10 +132,10 @@
                 <option value="Recibos">Recibos</option>   
                 <option value="Documentos tecnicos">Documentos tecnicos</option>       
             </select></h5><br>
-            <input type="number" id="NumFolios" name="NumFolios" class="form-control" placeholder="Numero de folios" required><br>
-            <input type="number" id="Serie"  name="Serie" class="form-control" placeholder="Numero de serie" required><br>
-            <input type="number" id="Subserie" name="Subserie" class="form-control" placeholder="Numero de subserie" required><br>
-            <textarea id="Asunto" rows="4" class="form-control" name="Asunto" placeholder="Asunto del radicado" required></textarea><br>
+            <input type="number" id="numfolios" name="numfolios" class="form-control" placeholder="Numero de folios" required><br>
+            <input type="number" id="serie"  name="serie" class="form-control" placeholder="Numero de serie" required><br>
+            <input type="number" id="subserie" name="subserie" class="form-control" placeholder="Numero de subserie" required><br>
+            <textarea id="asunto" rows="4" class="form-control" name="asunto" placeholder="Asunto del radicado" required></textarea><br>
             <textarea id="comentarios" rows="4" class="form-control" name="comentarios" placeholder="Comentarios o Anexos (CDs, USB)"></textarea>
             
         </div>
@@ -145,7 +145,8 @@
         <input type="submit" class="btn btn-success" value="Guardar y continuar el proceso de radicacion" id="btnGuardar" onclick="ImprimirSello(numeroRadicado,numeroConsecutivo)">
         <input type="button" class="btn btn-danger" value="Eliminar" id="btnEliminar">
     </div>            
-
+ 
 </form>
+
 </body>
 </html>
