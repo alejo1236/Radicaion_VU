@@ -158,9 +158,6 @@ if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/p
     ';
 }
 
-
-echo $_REQUEST[radicado];
-
 $host = 'localhost';
 $bd = 'radicados';
 $user = 'postgres';
@@ -177,6 +174,7 @@ $conexion = pg_connect("host=$host dbname=$bd user=$user password=$pass");
 
 $consulta = pg_query($conexion,$query);
 pg_close();
+
 echo 'usuario insertado';
 
 
