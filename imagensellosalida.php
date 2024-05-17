@@ -128,7 +128,7 @@ $tamanio = 500;
 if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/pdf'){
 
     if( $_FILES['documento']['size'] < ($tamanio * 1024) ){
-        move_uploaded_file( $_FILES['documento']['tmp_name'], 'documentoscargados/salidas' . $_FILES['documento']['name']);
+        move_uploaded_file( $_FILES['documento']['tmp_name'], 'documentoscargados/salidas/' . $_FILES['documento']['name']);
         echo
         '
         <div class="alert alert-success alert-dismissible fade show" role="alert">
