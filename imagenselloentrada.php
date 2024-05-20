@@ -174,7 +174,7 @@ $conexion = pg_connect("host=$host dbname=$bd user=$user password=$pass");
 
 $consulta = pg_query($conexion,$query);
 pg_close();
-echo 'usuario insertado';
+echo 'EL RADICADO A SIDO GUARDADO DE FORMA EXITOSA';
 
 
 
