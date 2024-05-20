@@ -167,37 +167,12 @@ $conexion = pg_connect("host=$host dbname=$bd user=$user password=$pass");
 
   
 
-  /* $query = ("INSERT INTO public.entrada(nombreremitente, empresaremitente, cargoremitente, dirrespuesta, documento, correo, nombrefuncionario, areafuncionario, canalrepcion, tipodocumental, numfolios, serie, subserie, asunto, comentarios)
+  $query = ("INSERT INTO public.entrada(nombreremitente, empresaremitente, cargoremitente, dirrespuesta, documento, correo, nombrefuncionario, areafuncionario, canalrepcion, tipodocumental, numfolios, serie, subserie, asunto, comentarios)
   
   VALUES('$_REQUEST[nombreremitente]', '$_REQUEST[empresaremitente]', '$_REQUEST[cargoremitente]', '$_REQUEST[dirrespuesta]', '$_REQUEST[documento]', '$_REQUEST[correo]', '$_REQUEST[nombrefuncionario]', '$_REQUEST[areafuncionario]', '$_REQUEST[canalrepcion]','$_REQUEST[tipodocumental]' , '$_REQUEST[numfolios]', '$_REQUEST[serie]', '$_REQUEST[subserie]', '$_REQUEST[asunto]', '$_REQUEST[comentarios]')");
- */
-$query2=("SELECT LAST_INSERT_ID()");
-
-$consulta = pg_query($conexion,$query2);
-
-if($consulta){
-
-	if(pg_num_rows($consulta)>0){
-
-		echo "<p>Listado de alumnos con promedio superior o igual a 90<br>";
-		echo "-----------------------</p>";
-
-		while($obj=pg_fetch_object($consulta)){
-
-			
-			echo $obj->id."<br>";			
-			echo "-----------------------------------------<br>";
-		}
-	}
-}
-
 
 pg_close();
 
 echo 'usuario insertado';
-
-
-
-
 
 ?>
