@@ -158,14 +158,19 @@ if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/p
     ';
 }
 
-$host = 'localhost';
-$bd = 'radicados';
-$user = 'postgres';
-$pass = 'sYSTEM123';
+$host ='localhost';
+$bd ='radicados';
+$user ='postgres';
+$pass ='admin123';
+$port ='5433';
 
-$conexion = pg_connect("host=$host dbname=$bd user=$user password=$pass");
+$conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pass");
 
-  
+if ($conexion) {
+    echo "Conexión exitosa.";
+} else {
+    echo "Error al conectar.";
+}
 
   $query = ("INSERT INTO public.entrada(nombreremitente, empresaremitente, cargoremitente, dirrespuesta, documento, correo, nombrefuncionario, areafuncionario, canalrepcion, tipodocumental, numfolios, serie, subserie, asunto, comentarios)
   
