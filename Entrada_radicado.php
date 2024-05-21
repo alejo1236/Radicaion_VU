@@ -9,6 +9,39 @@
     <link rel="stylesheet" href="css/styleEntrada.css">
     <script src="js/bootstrap.js"></script>
 </head>
+
+<?php // conexion  a la base de datos
+
+$host = 'localhost';
+$bd = 'radicados';
+$user = 'postgres';
+$pass = 'admin123';
+$port ='5433';
+
+$conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pass");
+
+$query2=("SELECT * FROM ENTRADA ORDER BY id DESC LIMIT 1");
+
+$consulta = pg_query($conexion,$query2);
+
+if($consulta){
+
+    if(pg_num_rows($consulta)>0){
+
+        while($obj=pg_fetch_object($consulta)){
+
+            
+            $ULTIMOID = $obj->id."<br>";
+            echo $idfinal = (int)$ULTIMOID + 1 ;    // saca el numero que se plasmara en el radicado 
+            echo "-----------------------------------------<br>";
+        }
+        
+    }
+}
+pg_close();
+
+?>
+
 <body>
 
     <!-- EN ESTE DIV SE ENCUENTRA EL ENCABEZADO DE RADICACION -->
@@ -32,15 +65,13 @@
                 <p id="radicado" name="radicado"></p>
                     <script>
                         
-                        
                         //FUNCION PARA GENERAR EL NUMERO DE RADICADO
                         // Generar el número de radicado
                         var numeroRadicado = generarNumeroRadicado();
                         document.getElementById('radicado').textContent = numeroRadicado;
         
                         function generarNumeroRadicado(numeroConsecutivo) {
-                        
-                        var numeroConsecutivo = 1; // Inicializamos el número consecutivo
+                        var numeroConsecutivo = "<?php echo $idfinal ?>"; // Inicializamos el número consecutivo
                         function guardarRadicado() {
                         var numeroRadicado = generarNumeroRadicado(numeroConsecutivo);
                         document.getElementById('radicado').textContent = numeroRadicado;
@@ -147,37 +178,5 @@
     </div>            
  
 </form>
-
-<?php
-
-$host = 'localhost';
-$bd = 'radicados';
-$user = 'postgres';
-$pass = 'admin123';
-$port ='5433';
-
-$conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pass");
-
-$query2=("SELECT * FROM ENTRADA ORDER BY id DESC LIMIT 1");
-
-$consulta = pg_query($conexion,$query2);
-
-if($consulta){
-
-	if(pg_num_rows($consulta)>0){
-
-		while($obj=pg_fetch_object($consulta)){
-
-			
-			$ULTIMOID = $obj->id."<br>";
-            echo $idfinal = (int)$ULTIMOID + 1 ;			
-			echo "-----------------------------------------<br>";
-		}
-        
-	}
-}
-pg_close();
-
-?>
 </body>
 </html>

@@ -50,7 +50,7 @@
             <img src="imagenes/LOGOINFI.jpg" alt="Imagen" width="248" height="80">
             <div>
                 <p>Asunto:<span id="Asunto"></span></p>
-                <p>Radicado: [Radicado]</p>
+                <p>Radicado: ""</p>
                 <p>Folios:<span id="NumFolios"></span></p>
                 <p>Fecha y hora actual: <span id="fechaHora"></span></p>
             </div>
@@ -176,6 +176,7 @@ if ($conexion) {
   
   VALUES('$_REQUEST[nombreremitente]', '$_REQUEST[empresaremitente]', '$_REQUEST[cargoremitente]', '$_REQUEST[dirrespuesta]', '$_REQUEST[documento]', '$_REQUEST[correo]', '$_REQUEST[nombrefuncionario]', '$_REQUEST[areafuncionario]', '$_REQUEST[canalrepcion]','$_REQUEST[tipodocumental]' , '$_REQUEST[numfolios]', '$_REQUEST[serie]', '$_REQUEST[subserie]', '$_REQUEST[asunto]', '$_REQUEST[comentarios]')");
 
+$consulta = pg_query($conexion,$query);
 pg_close();
 
 echo 'EL RADICADO A SIDO GUARDADO DE FORMA EXITOSA';
