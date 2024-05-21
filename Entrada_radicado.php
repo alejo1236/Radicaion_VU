@@ -43,7 +43,7 @@ pg_close();
 ?>
 
 <body>
-
+<form method="POST" action="imagenselloentrada.php"> 
     <!-- EN ESTE DIV SE ENCUENTRA EL ENCABEZADO DE RADICACION -->
     <div class="container text-center mt-5">
         <h2>Datos de Radicacion de entrada</h2>
@@ -67,14 +67,14 @@ pg_close();
                         
                         //FUNCION PARA GENERAR EL NUMERO DE RADICADO
                         // Generar el número de radicado
-                        var numeroRadicado = generarNumeroRadicado();
-                        document.getElementById('radicado').textContent = numeroRadicado;
+                        var numeroradicado = generarnumeroradicado();
+                        document.getElementById('radicado').textContent = numeroradicado;
         
-                        function generarNumeroRadicado(numeroConsecutivo) {
+                        function generarnumeroradicado(numeroConsecutivo) {
                         var numeroConsecutivo = "<?php echo $idfinal ?>"; // Inicializamos el número consecutivo
                         function guardarRadicado() {
-                        var numeroRadicado = generarNumeroRadicado(numeroConsecutivo);
-                        document.getElementById('radicado').textContent = numeroRadicado;
+                        var numeroradicado = generarnumeroradicado(numeroConsecutivo);
+                        document.getElementById('radicado').textContent = numeroradicado;
                         numeroConsecutivo++; // Incrementamos el número consecutivo
                         }
                         // Obtener la fecha actual
@@ -84,20 +84,20 @@ pg_close();
                         var mes = agregarCeros(fecha.getMonth() + 1);
                         var año = fecha.getFullYear().toString().slice(-2);
                         // Construir el número de radicado con el formato Eddmmaaaa-xxxx
-                        var numeroRadicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
-                        return numeroRadicado;
+                        var numeroradicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
+                        return numeroradicado;
                         }
         
                         function agregarCeros(numero) {
                             return numero < 10 ? '0' + numero : numero;
                         }
 
-                        function ImprimirSello(numeroRadicado,numeroConsecutivo){
-                        alert('SU NUMERO DE RADICADO ES ' + numeroRadicado + ' REVISE QUE SE ENCUENTRE BIEN DILIGENCIADO EL RADICADO Y ACEPTE PARA CONTINUAR CON LA IMPRESION DEL SELLO')
+                        function ImprimirSello(numeroradicado,numeroConsecutivo){
+                        alert('SU NUMERO DE RADICADO ES ' + numeroradicado + ' REVISE QUE SE ENCUENTRE BIEN DILIGENCIADO EL RADICADO Y ACEPTE PARA CONTINUAR CON LA IMPRESION DEL SELLO')
                         }
                         
                     </script>
-
+                    
             </div>
             <div class="col-sm-3">
                 <h5>Area que radica</h5>
@@ -106,8 +106,8 @@ pg_close();
         </div>
         <hr>  
     </div>
-<form method="POST" action="imagenselloentrada.php"> 
-        <div class="container text-center mt-5">
+
+        <div class="container text-center mt-5"> 
             <h2>Datos del Remitente</h2>
             <hr>
             <div class="form-group">
@@ -173,7 +173,7 @@ pg_close();
     </div>
 
     <div class="text-center mt-3">
-        <input type="submit" class="btn btn-success" value="Guardar y continuar el proceso de radicacion" id="btnGuardar" onclick="ImprimirSello(numeroRadicado,numeroConsecutivo)">
+        <input type="submit" class="btn btn-success" value="Guardar y continuar el proceso de radicacion" id="btnGuardar" onclick="ImprimirSello(numeroradicado,numeroConsecutivo)">
         <input type="button" class="btn btn-danger" value="Eliminar" id="btnEliminar">
     </div>            
  

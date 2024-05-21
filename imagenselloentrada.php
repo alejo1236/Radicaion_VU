@@ -49,7 +49,7 @@
         <!--<div class="container">-->
             <img src="imagenes/LOGOINFI.jpg" alt="Imagen" width="248" height="80">
             <div>
-                <p>Asunto:<span id="Asunto"></span></p>
+                <p>Asunto:<?php $asunto ?></p>
                 <p>Radicado: ""</p>
                 <p>Folios:<span id="NumFolios"></span></p>
                 <p>Fecha y hora actual: <span id="fechaHora"></span></p>
