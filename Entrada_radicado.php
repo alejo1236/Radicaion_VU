@@ -153,9 +153,10 @@
 $host = 'localhost';
 $bd = 'radicados';
 $user = 'postgres';
-$pass = 'sYSTEM123';
+$pass = 'admin123';
+$port ='5433';
 
-$conexion = pg_connect("host=$host dbname=$bd user=$user password=$pass");
+$conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pass");
 
 $query2=("SELECT * FROM ENTRADA ORDER BY id DESC LIMIT 1");
 
@@ -165,28 +166,17 @@ if($consulta){
 
 	if(pg_num_rows($consulta)>0){
 
-		
-		echo "-----------------------</p>";
-
 		while($obj=pg_fetch_object($consulta)){
 
 			
-			echo $ULTIMOID = $obj->id."<br>";
-            echo $ultimoid = (int)$ULTIMOID + 1 ;			
+			$ULTIMOID = $obj->id."<br>";
+            echo $idfinal = (int)$ULTIMOID + 1 ;			
 			echo "-----------------------------------------<br>";
 		}
         
 	}
 }
-
-
 pg_close();
-
-echo 'usuario insertado';
-
-
-
-
 
 ?>
 </body>
