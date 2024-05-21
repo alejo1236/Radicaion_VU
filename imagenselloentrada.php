@@ -176,13 +176,7 @@ if ($conexion) {
   
   VALUES('$_REQUEST[nombreremitente]', '$_REQUEST[empresaremitente]', '$_REQUEST[cargoremitente]', '$_REQUEST[dirrespuesta]', '$_REQUEST[documento]', '$_REQUEST[correo]', '$_REQUEST[nombrefuncionario]', '$_REQUEST[areafuncionario]', '$_REQUEST[canalrepcion]','$_REQUEST[tipodocumental]' , '$_REQUEST[numfolios]', '$_REQUEST[serie]', '$_REQUEST[subserie]', '$_REQUEST[asunto]', '$_REQUEST[comentarios]')");
 
-
-$consulta = pg_query($conexion,$query);
 pg_close();
+
 echo 'EL RADICADO A SIDO GUARDADO DE FORMA EXITOSA';
-
-
-
-
-
 ?>
