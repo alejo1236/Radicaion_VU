@@ -62,6 +62,7 @@ pg_close();
             </div>
             <div class="col-sm-3" , >
                 <h5>Número de radicado</h5>
+                <input type="hidden" id="radicadofinal" name="radicadofinal" value="">
                 <p id="radicado" name="radicado"></p>
                     <script>
                         
@@ -69,7 +70,9 @@ pg_close();
                         // Generar el número de radicado
                         var numeroradicado = generarnumeroradicado();
                         document.getElementById('radicado').textContent = numeroradicado;
-        
+                        document.getElementById('radicadofinal').value = numeroradicado; // se carga el id en el radicado final
+                        
+                        
                         function generarnumeroradicado(numeroConsecutivo) {
                         var numeroConsecutivo = "<?php echo $idfinal ?>"; // Inicializamos el número consecutivo
                         function guardarRadicado() {
@@ -84,8 +87,9 @@ pg_close();
                         var mes = agregarCeros(fecha.getMonth() + 1);
                         var año = fecha.getFullYear().toString().slice(-2);
                         // Construir el número de radicado con el formato Eddmmaaaa-xxxx
-                        var numeroradicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
+                        let numeroradicado = 'E' + dia + mes + año + '-' + numeroConsecutivo;
                         return numeroradicado;
+                        
                         }
         
                         function agregarCeros(numero) {
@@ -96,8 +100,7 @@ pg_close();
                         alert('SU NUMERO DE RADICADO ES ' + numeroradicado + ' REVISE QUE SE ENCUENTRE BIEN DILIGENCIADO EL RADICADO Y ACEPTE PARA CONTINUAR CON LA IMPRESION DEL SELLO')
                         }
                         
-                    </script>
-                    
+                    </script> 
             </div>
             <div class="col-sm-3">
                 <h5>Area que radica</h5>
@@ -166,8 +169,9 @@ pg_close();
             <input type="number" id="numfolios" name="numfolios" class="form-control" placeholder="Numero de folios" required><br>
             <input type="number" id="serie"  name="serie" class="form-control" placeholder="Numero de serie" required><br>
             <input type="number" id="subserie" name="subserie" class="form-control" placeholder="Numero de subserie" required><br>
-            <textarea id="asunto" rows="2" class="form-control" name="asunto" placeholder="Asunto del radicado" required></textarea><br>
-            <textarea id="comentarios" rows="2" class="form-control" name="comentarios" placeholder="Comentarios o Anexos (CDs, USB)"></textarea>
+            <textarea id="asunto" rows="2" class="form-control" name="asunto" placeholder="Asunto del radicado" required></textarea>
+            <h5>  Comentarios o Anexos (CDs, USB): 
+            <textarea id="comentarios" rows="2" class="form-control" name="comentarios" > Sin anexos</textarea>
             
         </div>
     </div>
@@ -175,8 +179,8 @@ pg_close();
     <div class="text-center mt-3">
         <input type="submit" class="btn btn-success" value="Guardar y continuar el proceso de radicacion" id="btnGuardar" onclick="ImprimirSello(numeroradicado,numeroConsecutivo)">
         <input type="button" class="btn btn-danger" value="Eliminar" id="btnEliminar">
-    </div>            
- 
+    </div> 
+                              
 </form>
 </body>
 </html>
