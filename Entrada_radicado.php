@@ -171,7 +171,7 @@ pg_close();
             <input type="number" id="subserie" name="subserie" class="form-control" placeholder="Numero de subserie" required><br>
             <textarea id="asunto" rows="2" class="form-control" name="asunto" placeholder="Asunto del radicado" required></textarea>
             <h5>  Comentarios o Anexos (CDs, USB): 
-            <textarea id="comentarios" rows="2" class="form-control" name="comentarios" > Sin anexos</textarea>
+            <textarea id="comentarios" rows="2" class="form-control" name="comentarios" >Sin anexos</textarea>
             
         </div>
     </div>

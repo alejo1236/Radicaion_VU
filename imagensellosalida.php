@@ -1,3 +1,11 @@
+<?php
+// Recoger las variables enviadas por POST
+$asunto = isset($_POST['asunto']) ? htmlspecialchars($_POST['asunto']) : '';
+$radicadofinal = isset($_POST['radicadofinal']) ? htmlspecialchars($_POST['radicadofinal']) : '';
+$numfolios = isset($_POST['numfolios']) ? htmlspecialchars($_POST['numfolios']) : '';
+$anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios']) : '';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
- 
+    
     <style>
         /* Estilo para el contenedor de la imagen y el texto */
         .container {
@@ -49,10 +57,11 @@
         <!--<div class="container">-->
             <img src="imagenes/LOGOINFI.jpg" alt="Imagen" width="248" height="80">
             <div>
-                <p>Asunto:<span id="Asunto"></span></p>
-                <p>Radicado: [Radicado]</p>
-                <p>Folios:<span id="NumFolios"></span></p>
-                <p>Fecha y hora actual: <span id="fechaHora"></span></p>
+            <p>Asunto:<span id="Asunto"></span>
+                - Radicado:<span id="Radicado"></span>
+                - Folios:<span id="NumFolios"></span>
+                - Anexos:<span id="anexos"></span>
+                - Fecha y hora actual: <span id="fechaHora"></span></p>
             </div>
         <!--</div>-->
     </div>
@@ -87,12 +96,18 @@
 
         window.onload = function() {
             // Función trae el valor del asunto
-            var Asunto = document.getElementById("Asunto").innerText = Asunto; // Asigna el valor deseado
+            var Asunto = "<?php echo $asunto; ?>";
+            document.getElementById("Asunto").innerText = Asunto; // Asigna el valor deseado
             
-
             // Función trae el valor de los folios
-            var NumFolios = "Número de folios"; // Asigna el valor deseado
+            var NumFolios = "<?php echo $numfolios; ?>"; // Asigna el valor deseado
             document.getElementById("NumFolios").innerText = NumFolios;
+
+            var Radicado = "<?php echo $radicadofinal; ?>"; // Asigna el valor deseado
+            document.getElementById("Radicado").innerText = Radicado;
+
+            var anexos = "<?php echo $anexos; ?>"; // Asigna el valor deseado
+            document.getElementById("anexos").innerText = anexos;
 
             // Llamar a la función de descarga al cargar la página
             descargarBox();
@@ -161,23 +176,18 @@ if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/p
 $host = 'localhost';
 $bd = 'radicados';
 $user = 'postgres';
-$pass = 'sYSTEM123';
+$pass = 'admin123';
+$port ='5433';
 
-$conexion = pg_connect("host=$host dbname=$bd user=$user password=$pass");
+$conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pass");
 
+  $query = ("INSERT INTO public.salida(nombrefuncionario, areafuncionario, nombredestinatario, empresadestinatario, cargodestinatario, documentodestinatario, canalenvio, tipodocumental, numfolios, asunto, comentarios, radicadofinal)
   
-
-  $query = ("INSERT INTO public.entrada(nombreremitente, empresaremitente, cargoremitente, dirrespuesta, documento, correo, nombrefuncionario, areafuncionario, canalrepcion, tipodocumental, numfolios, serie, subserie, asunto, comentarios)
-  
-  VALUES('$_REQUEST[nombreremitente]', '$_REQUEST[empresaremitente]', '$_REQUEST[cargoremitente]', '$_REQUEST[dirrespuesta]', '$_REQUEST[documento]', '$_REQUEST[correo]', '$_REQUEST[nombrefuncionario]', '$_REQUEST[areafuncionario]', '$_REQUEST[canalrepcion]','$_REQUEST[tipodocumental]' , '$_REQUEST[numfolios]', '$_REQUEST[serie]', '$_REQUEST[subserie]', '$_REQUEST[asunto]', '$_REQUEST[comentarios]')");
+  VALUES('$_REQUEST[nombrefuncionario]', '$_REQUEST[areafuncionario]', '$_REQUEST[nombredestinatario]', '$_REQUEST[empresadestinatario]', '$_REQUEST[cargodestinatario]', '$_REQUEST[documentodestinatario]', '$_REQUEST[canalenvio]','$_REQUEST[tipodocumental]' , '$_REQUEST[numfolios]', '$_REQUEST[asunto]', '$_REQUEST[comentarios]', '$_REQUEST[radicadofinal]')");
 
 
 $consulta = pg_query($conexion,$query);
 pg_close();
-echo 'usuario insertado';
-
-
-
-
+echo 'EL RADICADO A SIDO GUARDADO DE FORMA EXITOSA';
 
 ?>

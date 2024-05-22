@@ -86,7 +86,6 @@
                         }*/
                         }
 
-                    function ImprimirSello(numeroRadicado,numeroConsecutivo){
+                   /* function ImprimirSello(numeroRadicado,numeroConsecutivo){
                     alert('SU NUMERO DE RADICADO ES ' + numeroRadicado + numeroConsecutivo + ' REVISE QUE SE ENCUENTRE BIEN DILIGENCIADO EL RADICADO Y ACEPTE PARA CONTINUAR CON LA IMPRESION DEL SELLO')
-                    }
-                    
+                    }   */                    
