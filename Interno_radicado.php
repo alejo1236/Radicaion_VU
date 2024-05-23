@@ -1,4 +1,4 @@
-                                                                                       <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,40 @@
     <link rel="stylesheet" href="css/styleEntrada.css">
     <script src="js/bootstrap.js"></script>
 </head>
+
+
+<?php // conexion  a la base de datos
+
+$host = 'localhost';
+$bd = 'radicados';
+$user = 'postgres';
+$pass = 'admin123';
+$port ='5433';
+
+$conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pass");
+
+$query2=("SELECT * FROM interno ORDER BY id DESC LIMIT 1");
+
+$consulta = pg_query($conexion,$query2);
+
+if($consulta){
+
+    if(pg_num_rows($consulta)>0){
+
+        while($obj=pg_fetch_object($consulta)){
+
+            
+            $ULTIMOID = $obj->id."<br>";
+            echo $idfinal = (int)$ULTIMOID + 1 ;    // saca el numero que se plasmara en el radicado 
+            echo "-----------------------------------------<br>";
+        }
+        
+    }
+}
+pg_close();
+
+?>
+
 <body>
 
     <!-- EN ESTE DIV SE ENCUENTRA EL ENCABEZADO DE RADICACION -->
@@ -30,21 +64,21 @@
             <div class="col-sm-3" , >
                 <h5>Número de radicado</h5>
                 <p id="radicado"></p>
-                    <script>
-                        
+
+                <script>
                         
                         //FUNCION PARA GENERAR EL NUMERO DE RADICADO
                         // Generar el número de radicado
-                        var numeroRadicado = generarNumeroRadicado();
-                        document.getElementById('radicado').textContent = numeroRadicado;
-        
-                        function generarNumeroRadicado(numeroConsecutivo) {
+                        var numeroradicadointerno = generarnumeroradicado();
+                        document.getElementById('radicado').textContent = numeroradicadointerno;
+                        document.getElementById('radicadofinal').value = numeroradicadointerno; // se carga el id en el radicado final
                         
-                        var numeroConsecutivo = 1; // Inicializamos el número consecutivo
+                        
+                        function generarnumeroradicado() {
+                        var numeroConsecutivo = "<?php echo $idfinal ?>"; // Inicializamos el número consecutivo
                         function guardarRadicado() {
-                        var numeroRadicado = generarNumeroRadicado(numeroConsecutivo);
-                        document.getElementById('radicado').textContent = numeroRadicado;
-                        numeroConsecutivo++; // Incrementamos el número consecutivo
+                        var numeroradicadointerno = generarnumeroradicado(numeroConsecutivo);
+                        document.getElementById('radicado').textContent = numeroradicadointerno;
                         }
                         // Obtener la fecha actual
                         var fecha = new Date();
@@ -53,19 +87,20 @@
                         var mes = agregarCeros(fecha.getMonth() + 1);
                         var año = fecha.getFullYear().toString().slice(-2);
                         // Construir el número de radicado con el formato Eddmmaaaa-xxxx
-                        var numeroRadicado = 'IN' + dia + mes + año + '-' + numeroConsecutivo;
-                        return numeroRadicado;
+                        let numeroradicadointerno = 'IN' + dia + mes + año + '-' + numeroConsecutivo;
+                        return numeroradicadointerno;
+                        
                         }
         
                         function agregarCeros(numero) {
                             return numero < 10 ? '0' + numero : numero;
                         }
 
-                        function ImprimirSello(numeroRadicado,numeroConsecutivo){
-                        alert('SU NUMERO DE RADICADO ES ' + numeroRadicado + ' REVISE QUE SE ENCUENTRE BIEN DILIGENCIADO EL RADICADO Y ACEPTE PARA CONTINUAR CON LA IMPRESION DEL SELLO')
+                        function imprimirinterno(numeroradicadointerno,numeroConsecutivo){
+                        alert('SU NUMERO DE RADICADO ES ' + numeroradicadointerno + ' REVISE QUE SE ENCUENTRE BIEN DILIGENCIADO EL RADICADO Y ACEPTE PARA CONTINUAR CON LA IMPRESION DEL SELLO')
                         }
                         
-                    </script>
+                    </script> 
 
             </div>
             <div class="col-sm-3">
@@ -81,10 +116,10 @@
         <h2>Datos del remitente</h2>
         <hr>
         <div class="form-group">
-            <input type="text" id="nombrefuncionario" name="nombrefuncionario" class="form-control" placeholder="Nombre del funcionario que remite" required><br>
+            <input type="text" id="nombrefuncionarioremitente" name="nombrefuncionarioremitente" class="form-control" placeholder="Nombre del funcionario que remite" required><br>
                 
             <h5>  Area del funcionario: 
-            <select class="form-control"  name="areafuncionario"  placeholder=" Area a la que se adjudica " required>
+            <select class="form-control"  name="areafuncionariorem"  placeholder=" Area a la que se adjudica " required>
                 <option value="GERENCIA">GERENCIA</option>
                 <option value="AREA FINANCIERA">AREA FINANCIERA</option>
                 <option value="COMERCIAL">COMERCIAL</option>
@@ -101,10 +136,10 @@
             <h2>Datos del Destinatario</h2>
             <hr>
             <div class="form-group">
-            <input type="text" id="nombrefuncionario" name="nombrefuncionario" class="form-control" placeholder="Nombre del funcionario destinatario" required><br>
+            <input type="text" id="nombrefuncionariodestino" name="nombrefuncionariodestino" class="form-control" placeholder="Nombre del funcionario destinatario" required><br>
                 
                 <h5>  Area del funcionario: 
-                <select class="form-control"  name="areafuncionario"  placeholder=" Area a la que se adjudica " required>
+                <select class="form-control"  name="areafuncionariodestino"  placeholder=" Area a la que se adjudica " required>
                     <option value="GERENCIA">GERENCIA</option>
                     <option value="AREA FINANCIERA">AREA FINANCIERA</option>
                     <option value="COMERCIAL">COMERCIAL</option>
@@ -151,7 +186,7 @@
     </div>
 
     <div class="text-center mt-3">
-        <input type="submit" class="btn btn-success" value="Guardar y continuar el proceso de radicacion" id="btnGuardar" onclick="ImprimirSello(numeroRadicado,numeroConsecutivo)">
+    <input type="submit" class="btn btn-success" value="Guardar y continuar el proceso de radicacion" id="btnGuardarSalida" onclick="imprimirinterno(numeroradicadointerno,numeroConsecutivo)">
         <input type="button" class="btn btn-danger" value="Eliminar" id="btnEliminar">
     </div>            
 

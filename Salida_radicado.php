@@ -63,6 +63,7 @@ pg_close();
                 <h5>Número de radicado</h5>
                 <input type="hidden" id="radicadofinal" name="radicadofinal" value="">
                 <p id="radicado" name="radicado"></p>
+                
                 <script>
                         
                         //FUNCION PARA GENERAR EL NUMERO DE RADICADO
