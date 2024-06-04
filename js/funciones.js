@@ -17,9 +17,11 @@
             
                     function redireccionar4(pagina) {
                         window.location.href = pagina;
-                        alert("Has seleccionado: CONSULTA");
+                        alert("Has seleccionado: Volver al menu inicial , pulsa aceptar para continuar");
                     }
                    
+            
+
                     function asignarfecha(){
                         var fechaActual = new Date();
                         var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

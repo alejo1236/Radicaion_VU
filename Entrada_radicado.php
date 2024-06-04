@@ -51,7 +51,7 @@ pg_close();
         <div class="row">
             <div class="col-sm-3">
                 <h5>Usuario que radica</h5>
-                <p> LUZ KARIME ORTEGA</p> 
+                <p> GUSTAVO LOPEZ TORRES</p> 
             </div>
             <div class="col-sm-3">
                 <h5>Fecha de radicacion</h5>

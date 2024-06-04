@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 // Recoger las variables enviadas por POST
 $asunto = isset($_POST['asunto']) ? htmlspecialchars($_POST['asunto']) : '';
 $radicadofinal = isset($_POST['radicadofinal']) ? htmlspecialchars($_POST['radicadofinal']) : '';
@@ -61,7 +62,7 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
                 - Radicado:<span id="Radicado"></span>
                 - Folios:<span id="NumFolios"></span>
                 - Anexos:<span id="anexos"></span>
-                - Fecha y hora actual: <span id="fechaHora"></span></p>
+                - Fecha y hora: <span id="fechaHora"></span></p>
             </div>
         <!--</div>-->
     </div>
@@ -113,6 +114,11 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
             descargarBox();
         };
 
+        function redireccionar5(pagina) {
+            window.location.href = pagina;
+            alert("Has seleccionado: Volver al menu inicial , pulsa aceptar para continuar");
+            }
+
     </script>
 
     <!-- FALTA DIRECCION DEL SERVIDOR PARA CARGAR DOCUMENTOS  -->
@@ -126,19 +132,23 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
     <div>
         <div>
             <h2>Subir documentos en PDF</h2>
-            <form action="" method="post" enctype="multipart/form-data">
-                <input type="file" name="documento" id="" class="btn btn-success">
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="documento" id="" class="btn btn-success" required>
                 <input type="submit" class="btn btn-danger">
             </form>
         </div>
     </div>
+
+    <div class="text-center mt-3">
+        <button id="indexsalida" class="btn btn-danger" onclick="redireccionar5('index.php')">VOLVER AL MENU INICIAL</button>
+    </div> 
 
 </body>
 </html>
 
 <?php
 
-$tamanio = 500;
+$tamanio = 4000;
 
 if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/pdf'){
 

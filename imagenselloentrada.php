@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 // Recoger las variables enviadas por POST
 $asunto = isset($_POST['asunto']) ? htmlspecialchars($_POST['asunto']) : '';
 $radicadofinal = isset($_POST['radicadofinal']) ? htmlspecialchars($_POST['radicadofinal']) : '';
@@ -13,10 +14,12 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script type="text/javascript" src="js\funciones.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
- 
+    
+
     <style>
         /* Estilo para el contenedor de la imagen y el texto */
         .container {
@@ -61,7 +64,7 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
                 - Radicado:<span id="Radicado"></span>
                 - Folios:<span id="NumFolios"></span>
                 - Anexos:<span id="anexos"></span>
-                - Fecha y hora actual: <span id="fechaHora"></span></p>
+                - Fecha y hora: <span id="fechaHora"></span></p>
             </div>
         <!--</div>-->
     </div>
@@ -112,6 +115,33 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
             // Llamar a la función de descarga al cargar la página
             descargarBox();
         };
+        
+        function submitForm(event) {
+        // Prevenir que el formulario se envíe inmediatamente
+        event.preventDefault();
+
+        // Esperar 5 segundos antes de redireccionar
+        setTimeout(function() {
+            // Verificar si el formulario es válido
+            if (document.getElementById('enviopdf').checkValidity()) {
+
+                alert('El Radicado se ha guardado de manera exitosa');
+                //href="index.php"
+                document.getElementById('enviopdf').submit();
+            } else {
+                alert('Por favor, cargue el documento con el sello escaneado en formato PDF para terminar');
+            }
+        }); 
+    }
+
+    function redireccionar5(pagina) {
+                        window.location.href = pagina;
+                        alert("Has seleccionado: Volver al menu inicial , pulsa aceptar para continuar");
+                    }
+        
+    function habilitarmenu(){
+        document.getElementById('volverindex').disable=false;
+    }               
 
     </script>
 
@@ -121,23 +151,27 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
 
     <h2>Cargue el documento con el sello ESCANEADO a continuacion</h2>
     <br></br>
-    <!-- ACA SE CARGAN LOS ARCHIVOS RADICADOS -->
+    <!-- ACA SE CARGAN LOS ARCHIVOS RADICADOS  -->
 
     <div>
         <div>
             <h2>Subir documentos en PDF</h2>
-            <form action="" method="post" enctype="multipart/form-data">
-                <input type="file" name="documento" id="" class="btn btn-success">
+            <form id="enviopdf" action="" method="post" enctype="multipart/form-data">
+                <input type="file" name="documento" id="" class="btn btn-success" required>
                 <input type="submit" class="btn btn-danger">
             </form>
         </div>
     </div>
 
+    <div class="text-center mt-3">
+        <button id="volverindex" class="btn btn-danger" onclick="redireccionar5('index.php')">VOLVER AL MENU INICIAL</button>
+    </div> 
+
 </body>
 </html>
 
 <?php
-$tamanio = 500;
+$tamanio = 20000;
 
 if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/pdf'){
 
@@ -179,12 +213,6 @@ $pass ='admin123';
 $port ='5433';
 
 $conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pass");
-
-if ($conexion) {
-    echo "Conexión exitosa.";
-} else {
-    echo "Error al conectar.";
-}
 
   $query = ("INSERT INTO public.entrada(nombreremitente, empresaremitente, cargoremitente, dirrespuesta, documento, correo, nombrefuncionario, areafuncionario, canalrepcion, tipodocumental, numfolios, serie, subserie, asunto, comentarios, radicadofinal)
   

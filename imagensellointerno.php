@@ -1,5 +1,6 @@
 <?php
 // Recoger las variables enviadas por POST
+error_reporting(0);
 $asunto = isset($_POST['asunto']) ? htmlspecialchars($_POST['asunto']) : '';
 $radicadofinal = isset($_POST['radicadofinal']) ? htmlspecialchars($_POST['radicadofinal']) : '';
 $numfolios = isset($_POST['numfolios']) ? htmlspecialchars($_POST['numfolios']) : '';
@@ -113,6 +114,11 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
             descargarBox();
         };
 
+        function redireccionar5(pagina) {
+                        window.location.href = pagina;
+                        alert("Has seleccionado: Volver al menu inicial , pulsa aceptar para continuar");
+                    }
+
     </script>
 
     <!-- FALTA DIRECCION DEL SERVIDOR PARA CARGAR DOCUMENTOS  -->
@@ -132,6 +138,10 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
             </form>
         </div>
     </div>
+
+    <div class="text-center mt-3">
+        <button id="volverindex" class="btn btn-danger" onclick="redireccionar5('index.php')">VOLVER AL MENU INICIAL</button>
+    </div> 
 
 </body>
 </html>
