@@ -19,7 +19,7 @@
         <button class="btn btn-success" onclick="redireccionar1('Entrada_radicado.php')">ENTRADA</button>
         <button class="btn btn-warning" onclick="redireccionar2('Salida_radicado.php')">SALIDA</button> <!--COLOCAR EL HTML DE SALIDA_RADICADO.HTML-->
         <button class="btn btn-info" onclick="redireccionar3('Interno_radicado.php')">INTERNO</button><!--COLOCAR EL HTML DE INTERNO_RADICADO.HTML-->
-        <button class="btn btn-secondary" onclick="redireccionar4('CONSULTA2')">CONSULTA </button><!--COLOCAR EL HTML DE CONSULTA_RADICADO.HTML-->
+        <button class="btn btn-secondary" onclick="redireccionar4('Consulta.radicados.php')">CONSULTA </button><!--COLOCAR EL HTML DE CONSULTA_RADICADO.HTML-->
     </div>
 
 </body>

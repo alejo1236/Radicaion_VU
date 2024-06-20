@@ -63,6 +63,7 @@ pg_close();
             </div>
             <div class="col-sm-3" , >
                 <h5>Número de radicado</h5>
+                <input type="hidden" id="radicadofinal" name="radicadofinal" value="">
                 <p id="radicado"></p>
 
                 <script>

@@ -5,6 +5,7 @@ $asunto = isset($_POST['asunto']) ? htmlspecialchars($_POST['asunto']) : '';
 $radicadofinal = isset($_POST['radicadofinal']) ? htmlspecialchars($_POST['radicadofinal']) : '';
 $numfolios = isset($_POST['numfolios']) ? htmlspecialchars($_POST['numfolios']) : '';
 $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios']) : '';
+
 ?>
 
 <!DOCTYPE html>
@@ -176,8 +177,10 @@ $tamanio = 20000;
 if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/pdf'){
 
     if( $_FILES['documento']['size'] < ($tamanio * 1024) ){
+        
         move_uploaded_file( $_FILES['documento']['tmp_name'], 'documentoscargados/entradas/' . $_FILES['documento']['name']);
-        echo
+
+        echo  
         '
         <div class="alert alert-success alert-dismissible fade show" role="alert">
                  El documento se ha guardado correctamente.
@@ -220,6 +223,5 @@ $conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pa
 
 $consulta = pg_query($conexion,$query);
 pg_close();
-
 echo 'EL RADICADO A SIDO GUARDADO DE FORMA EXITOSA';
 ?>

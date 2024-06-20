@@ -114,6 +114,24 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
             descargarBox();
         };
 
+        function submitForm(event) {
+        // Prevenir que el formulario se envíe inmediatamente
+        event.preventDefault();
+
+        // Esperar 5 segundos antes de redireccionar
+        setTimeout(function() {
+            // Verificar si el formulario es válido
+            if (document.getElementById('enviopdf').checkValidity()) {
+
+                alert('El Radicado se ha guardado de manera exitosa');
+                //href="index.php"
+                document.getElementById('enviopdf').submit();
+            } else {
+                alert('Por favor, cargue el documento con el sello escaneado en formato PDF para terminar');
+            }
+        }); 
+    }
+
         function redireccionar5(pagina) {
                         window.location.href = pagina;
                         alert("Has seleccionado: Volver al menu inicial , pulsa aceptar para continuar");
@@ -148,7 +166,7 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
 
 <?php
 
-$tamanio = 500;
+$tamanio = 20000;
 
 if(isset($_FILES['documento']) && $_FILES['documento']['type'] == 'application/pdf'){
 
@@ -195,9 +213,7 @@ $conexion = pg_connect("host=$host port=$port dbname=$bd user=$user password=$pa
   
   VALUES('$_REQUEST[nombrefuncionarioremitente]', '$_REQUEST[areafuncionariorem]', '$_REQUEST[nombrefuncionariodestino]', '$_REQUEST[areafuncionariodestino]', '$_REQUEST[canalenvio]','$_REQUEST[tipodocumental]' , '$_REQUEST[numfolios]', '$_REQUEST[asunto]', '$_REQUEST[comentarios]', '$_REQUEST[radicadofinal]')");
 
-
 $consulta = pg_query($conexion,$query);
 pg_close();
 echo 'EL RADICADO A SIDO GUARDADO DE FORMA EXITOSA';
-
 ?>
