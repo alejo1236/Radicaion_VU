@@ -29,6 +29,20 @@
             width: 200px;
             margin-bottom: 10px;
         }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
     </style>
 </head>
 <body>
@@ -44,7 +58,10 @@
                 <input type="submit" class="btn btn-success" value="Consultar">
             </div>
         </form>
-    
+
+        <div class="text-center mt-3">
+        <button id="volverindex" class="btn btn-danger" onclick="redireccionar5('index.php')">Volver al menu inicial</button>
+        </div> 
 
 <?php
 error_reporting(0);
@@ -64,7 +81,7 @@ if (!$conn) {
 
 $tiporadicado = $_POST['tiporadicado'];
 // Definir la consulta SQL
-$query = "SELECT * FROM $tiporadicado"; // Reemplaza 'nombre_de_la_tabla' por el nombre de tu tabla
+$query = "SELECT * FROM $tiporadicado"; 
 
 // Ejecutar la consulta
 $result = pg_query($conn, $query);
@@ -73,31 +90,116 @@ if (!$result) {
     die("Error en la consulta: " . pg_last_error());
 }
 
-// Generar la tabla HTML
-echo "<table border='1'>
-        <tr>
-            <th>ID</th>
-            <th>Numero Radicado</th>
-            <th>Asunto</th>            
-        </tr>";
+switch ($tiporadicado) {
+    case 'entrada': // caso de seleccion entrada
+    // Generar la tabla HTML
+    echo "<table border='1'>
+    <tr>
+        <th>Numero Radicado</th>
+        <th>Asunto</th>
+        <th>Nombre del remitente</th>
+        <th>Empresa del remitente Radicado</th>
+        <th>correo</th>  
+        <th>Nombre del funcionario</th>
+        <th>Area del funcionario</th>
+        <th>Canal de recepcion</th>       
+        <th>Comentarios</th>        
+    </tr>";
 
-// Obtener los datos y mostrarlos en la tabla
-while ($row = pg_fetch_assoc($result)) {
+    // Obtener los datos y mostrarlos en la tabla
+    while ($row = pg_fetch_assoc($result)) {
     echo "<tr>
-            <td>{$row['id']}</td>
-            <td>{$row['radicadofinal']}</td>
-            <td>{$row['asunto']}</td>            
-          </tr>";
+        <td>{$row['radicadofinal']}</td>
+        <td>{$row['asunto']}</td> 
+        <td>{$row['nombreremitente']}</td>
+        <td>{$row['empresaremitente']}</td>
+        <td>{$row['correo']}</td>   
+        <td>{$row['nombrefuncionario']}</td>
+        <td>{$row['areafuncionario']}</td>
+        <td>{$row['canalrepcion']}</td> 
+        <td>{$row['comentarios']}</td>             
+    </tr>";
+    }
+        break;
+
+    case 'salida': // caso de seleccion Salida
+    echo "<table border='1'>
+    <tr>
+        <th>Numero Radicado</th>
+        <th>Asunto</th>
+        <th>Tipo docuemntal</th>
+        <th>Nombre del Funcionario</th>
+        <th>Area de funcionario</th>
+        <th>Nombre de destinatario</th>  
+        <th>Empresa destinataria</th>
+        <th>cargo Destinatario</th>
+        <th>Documento destinatario</th>
+        <th>Canal de envio</th>       
+        <th>Comentarios</th>        
+    </tr>";
+
+    // Obtener los datos y mostrarlos en la tabla
+    while ($row = pg_fetch_assoc($result)) {
+    echo "<tr>
+        <td>{$row['radicadofinal']}</td>
+        <td>{$row['asunto']}</td> 
+        <td>{$row['documentodestinatario']}</td> 
+        <td>{$row['nombrefuncionario']}</td>
+        <td>{$row['areafuncionario']}</td>
+        <td>{$row['nombredestinatario']}</td>   
+        <td>{$row['empresadestinatario']}</td>
+        <td>{$row['cargodestinatario']}</td>
+        <td>{$row['documentodestinatario']}</td> 
+        <td>{$row['canalenvio']}</td> 
+        <td>{$row['comentarios']}</td>             
+    </tr>";
+    }break;
+
+    case 'interno':// caso de seleccion interno
+    echo "<table border='1'>
+    <tr>
+        <th>Numero Radicado</th>
+        <th>Asunto</th>
+        <th>Nombre del funcionario remitente</th>
+        <th>Area del funcionario remitente</th>
+        <th>Nombre del funcionario destino</th>  
+        <th>Area del funcionario destino</th>
+        <th>Tipo documental</th>
+        <th>Canal de envio</th>       
+        <th>Comentarios</th>        
+    </tr>";
+
+    // Obtener los datos y mostrarlos en la tabla
+    while ($row = pg_fetch_assoc($result)) {
+    echo "<tr>
+        <td>{$row['radicadofinal']}</td>
+        <td>{$row['asunto']}</td> 
+        <td>{$row['nombrefuncionarioremitente']}</td>
+        <td>{$row['areafuncionariorem']}</td>
+        <td>{$row['nombrefuncionariodestino']}</td>   
+        <td>{$row['areafuncionariodestino']}</td>
+        <td>{$row['tipodocumental']}</td>
+        <td>{$row['canalenvio']}</td> 
+        <td>{$row['comentarios']}</td>             
+    </tr>";
+    }break;
 }
 
 echo "</table>";
-
-// Liberar el resultado
 pg_free_result($result);
-
-// Cerrar la conexión
 pg_close($conn);
 ?>
+
+        <div class="text-center mt-3">
+        <button id="volverindex" class="btn btn-danger" onclick="redireccionar5('index.php')">Volver al menu inicial</button>
+        </div> 
+
+        <script>
+        function redireccionar5(pagina) {
+                        window.location.href = pagina;
+                        alert("Has seleccionado: Volver al menu inicial , pulsa aceptar para continuar");
+                    }
+        </script> 
 
 </body>
 </html>
