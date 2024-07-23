@@ -44,7 +44,7 @@ pg_close();
 ?>
 
 <body>
-
+<form method="POST" action="imagensellointerno.php"> 
     <!-- EN ESTE DIV SE ENCUENTRA EL ENCABEZADO DE RADICACION -->
     <div class="container text-center mt-5">
         <h2>Datos de Radicacion interno</h2>
@@ -80,6 +80,7 @@ pg_close();
                         function guardarRadicado() {
                         var numeroradicadointerno = generarnumeroradicado(numeroConsecutivo);
                         document.getElementById('radicado').textContent = numeroradicadointerno;
+                        numeroConsecutivo++;
                         }
                         // Obtener la fecha actual
                         var fecha = new Date();
@@ -111,7 +112,7 @@ pg_close();
         </div>
         <hr>  
     </div>
-<form method="POST" action="imagensellointerno.php"> 
+
         
 <div class="container text-center mt-5">
         <h2>Datos del remitente</h2>

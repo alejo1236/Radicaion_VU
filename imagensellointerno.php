@@ -56,7 +56,7 @@ $anexos = isset($_POST['comentarios']) ? htmlspecialchars($_POST['comentarios'])
 <body>
     <div class="box" id="downloadBox">
         <!--<div class="container">-->
-            <img src="imagenes/LOGOINFI.jpg" alt="Imagen" width="248" height="80">
+            <img src="imagenes/LOGO INFITULUA.svg" alt="Imagen" width="248" height="80">
             <div>
                 <p>Asunto:<span id="Asunto"></span>
                 - Radicado:<span id="Radicado"></span>
