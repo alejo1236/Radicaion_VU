@@ -1,3 +1,18 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = 'admin';
+    echo "SESION INICIADA CORRECTAMENTE";
+    header("Location: login.php");
+}
+else if (isset($_SESSION['username'])) {
+    $_SESSION['username'] = 'VENTANILLA UNICA';
+    //header("Location: index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,9 +23,31 @@
     <link rel="stylesheet" href="css/styleindex.css">
     <script type="text/javascript" src="js\funciones.js"></script>
 
+    <style>
+        .banner {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            text-align: right;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .banner span {
+            margin-right: 30px;
+        }
+    </style>
+
 
 </head>
 <body>
+
+    <div class="banner">
+        <span>Bienvenido, <?php echo "Has iniciado Sesion como: ".$_SESSION['username']; ?></span>
+        <a href="login.php" id="CerrarSesion">//   - Cerrar Sesion</a>
+    </div>
 
     <div class="image-container">
         <img src="imagenes/LOGOGRANDE.jpg" alt="Descripción de la imagen">

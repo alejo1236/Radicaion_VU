@@ -1,3 +1,19 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = 'admin';
+    echo "SESION INICIADA CORRECTAMENTE";
+    header("Location: login.php");
+}
+else if (isset($_SESSION['username'])) {
+    $_SESSION['username'] = 'VENTANILLA UNICA';
+    //header("Location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,6 +29,21 @@
     <script src="js/bootstrap.js"></script>
     </head>
     <style>
+        
+        .banner {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            text-align: right;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .banner span {
+            margin-right: 30px;
+        }
         .center-text {
             text-align: center;
         }
@@ -46,6 +77,12 @@
     </style>
 </head>
 <body>
+
+<div class="banner">
+        <span>Bienvenido, <?php echo "Has iniciado Sesion como: ".$_SESSION['username']; ?></span>
+        <a href="login.php" id="CerrarSesion">//   - Cerrar Sesion</a>
+    </div>
+    
     <h2 class="center-text">Seleccione el tipo de radicado que desea consultar:</h2>
     
         <form method="POST" action="">

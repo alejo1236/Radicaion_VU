@@ -1,4 +1,19 @@
-                                                                                       <!DOCTYPE html>
+<?php
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = 'admin';
+    echo "SESION INICIADA CORRECTAMENTE";
+    header("Location: login.php");
+}
+else if (isset($_SESSION['username'])) {
+    $_SESSION['username'] = 'VENTANILLA UNICA';
+    //header("Location: index.php");
+}
+?>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +23,23 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styleEntrada.css">
     <script src="js/bootstrap.js"></script>
+
+    <style>
+        .banner {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            text-align: right;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .banner span {
+            margin-right: 30px;
+        }
+    </style>
 </head>
 
 <?php // conexion  a la base de datos
@@ -42,6 +74,12 @@ pg_close();
 
 ?>
 <body>
+
+<div class="banner">
+        <span>Bienvenido, <?php echo "Has iniciado Sesion como: ".$_SESSION['username']; ?></span>
+        <a href="login.php" id="CerrarSesion">//   - Cerrar Sesion</a>
+    </div>
+    
 <form method="POST" action="imagensellosalida.php"> 
     <!-- EN ESTE DIV SE ENCUENTRA EL ENCABEZADO DE RADICACION -->
     <div class="container text-center mt-5">
@@ -177,9 +215,16 @@ pg_close();
 
     <div class="text-center mt-3">
         <input type="submit" class="btn btn-success" value="Guardar y continuar el proceso de radicacion" id="btnGuardarSalida" onclick="imprimirSalida(numeroradicadosalida,numeroConsecutivo)">
-        <input type="button" class="btn btn-danger" value="Eliminar" id="btnEliminar">
+        <!--<input type="button" class="btn btn-danger" value="Eliminar" id="btnEliminar">   -->
+        <button id="volverindex" class="btn btn-danger" onclick="redireccionar5('index.php')">Volver al menu inicial</button>
     </div>            
 
 </form>
+        <script>
+        function redireccionar5(pagina) {
+                        window.location.href = pagina;
+                        alert("Has seleccionado: Volver al menu inicial , pulsa aceptar para continuar");
+                    }
+        </script> 
 </body>
 </html>
